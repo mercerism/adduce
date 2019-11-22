@@ -1,0 +1,3 @@
+= The *adduce* Package
+
+*_adduce_* is a node.js package which reads the contents of file and http(s) URLs from the command line, interprets them as JSON files, merges their contents and passes it to an application.  It is intended to be used in preference to the practice of using the NODE_ENV environment variable to set configuration settings.  _adduce_ is the spiritual successor to the *_sn-props_* package which is no longer maintained.
