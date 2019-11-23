@@ -21,19 +21,23 @@ For more details, see the text "<<#user-content-ref-2,Is NODE_ENV an Anti-Patter
 
 Simply put, *_adduce_* allows an application developer to start a program like this:
 
- #!/usr/bin/env node
- // simple_server - a simple test server
- 
- require( 'adduce' )
-   .startup( props => {
-      console.log( 'properties:\n' + JSON.stringify( props ) );
- 
-      // Rest of the program goes here.
- } );
+....
+#!/usr/bin/env node
+// simple_server - a simple test server
+
+require( 'adduce' )
+  .startup( props => {
+     console.log( 'properties:\n' + JSON.stringify( props ) );
+
+     // Rest of the program goes here.
+} );
+....
 
 And when the program is started like this:
 
- $ simple_server --config file://app_server.json --config https://int.example.com/app_2122.json
+....
+$ simple_server --config file://app_server.json --config https://int.example.com/app_2122.json
+....
 
 Then the contents of the app_server.json file and the app_2122.json file are merged into a single JavaScript object and passed to the callback function passed as a parameter to the startup() function.
 This is useful because it allows a developer to split machine specific configuration and application specific configuration into two files: the local and the remote.
@@ -46,29 +50,33 @@ If you are comfortable hosting keys and secrets on a server that any internal cl
 Alternately, you can use *_adduce_* to listen for updates from a key management service.
 The code would change to include a reference to the update() function, like so:
 
- #!/usr/bin/env node
- // simple_server - a simple test server
- 
- require( 'adduce' )
-   .startup( props => {
-     console.log( 'startup properties:\n' + JSON.stringify( props ) );
- 
-     // Don't start the application yet.
-   } )
-   .update( props => {
-     console.log( 'update properties:\n' + JSON.stringify( props ) );
- 
-     // Presumably the update properties contain credentials for back-end systems.
-     // Now that we have them, we can start the application
-   } );
+....
+#!/usr/bin/env node
+// simple_server - a simple test server
+
+require( 'adduce' )
+  .startup( props => {
+    console.log( 'startup properties:\n' + JSON.stringify( props ) );
+
+    // Don't start the application yet.
+  } )
+  .update( props => {
+    console.log( 'update properties:\n' + JSON.stringify( props ) );
+
+    // Presumably the update properties contain credentials for back-end systems.
+    // Now that we have them, we can start the application
+  } );
+....
 
 And you would start the program like this:
 
- $ simple_server \
-     --config file://app_server.json \
-     --config https://int.example.com/app_2122.json \
-     --update 'IPv4:@en0:9043' \
-     --update-root file://update_root.pem
+....
+$ simple_server \
+    --config file://app_server.json \
+    --config https://int.example.com/app_2122.json \
+    --update 'IPv4:@en0:9043' \
+    --update-root file://update_root.pem
+....
 
 The '--update' command line option specifies the ip address and port to listen for updates while the '--update-root' command line option specifies the location of a trusted root certificate.
 Systems attempting to connect to the update port will need to use a client-side certificate which derives from this root.
