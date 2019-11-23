@@ -1,14 +1,19 @@
 = adduce
 
-*_adduce_* is a node.js package which reads the contents of file and http(s) URLs from the command line, interprets them as JSON files, merges their contents and passes it to an application as a single JavaScript object.  It is intended to be used in preference to the practice of using the NODE_ENV environment variable to set configuration settings.  *_adduce_* is the spiritual successor to the <<#user-content-ref-1,sn-props>> package which is no longer maintained. *_adduce_* also adds the ability to listen for a configuration update before starting the app.
+*_adduce_* is a node.js package which reads the contents of file and http(s) URLs from the command line, interprets them as JSON files, merges their contents and passes it to an application as a single JavaScript object.
+It is intended to be used in preference to the practice of using the NODE_ENV environment variable to set configuration settings.
+*_adduce_* is the spiritual successor to the <<#user-content-ref-1,sn-props>> package which is no longer maintained. *_adduce_* also adds the ability to listen for a configuration update before starting the app.
 
 :toc:
 
 == Introduction and Motivation
 
-For years the typical pracice for configuring node.js applications is to hard-code configuration settings into the application, using the NODE_ENV environment variable to select from different application profiles.  Setting NODE_ENV to "prod" would select the production configuration settings while setting it to "dev" would select the development settings.  Additional environments such as "test" or "perf" could be added for QA or performance testing.
+For years the typical pracice for configuring node.js applications is to hard-code configuration settings into the application, using the NODE_ENV environment variable to select from different application profiles.
+Setting NODE_ENV to "prod" would select the production configuration settings while setting it to "dev" would select the development settings.
+Additional environments such as "test" or "perf" could be added for QA or performance testing.
 
-While this is a very simple technique for handling multiple application profiles, it is not without its faults.  More than once we have seen database passwords hard-coded in applications. This is bad. It also _requires_ a code change when configuration settings change. For more details, see the text "<<#user-content-ref-2,Is NODE_ENV an Anti-Pattern?>>" (referenced below.)
+While this is a very simple technique for handling multiple application profiles, it is not without its faults.
+More than once we have seen database passwords hard-coded in applications. This is bad. It also _requires_ a code change when configuration settings change. For more details, see the text "<<#user-content-ref-2,Is NODE_ENV an Anti-Pattern?>>" (referenced below.)
 
 == References
 
